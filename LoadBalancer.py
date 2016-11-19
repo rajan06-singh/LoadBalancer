@@ -6,14 +6,14 @@ mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 mysock1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 host = ' '
-port = 5555
+port = 5555 
 size = 512
-a = ['192.168.1.186', '192.168.1.187']
-addr = (host,port)
+a = ['192.168.1.186', '192.168.1.187'] #these are the ip addresses of downstream servers
+addr = (host,port) 
 addr2 = (a[0], port)
 addr3 = (a[1], port)
-myserver.bind(addr)
-myserver.listen(10)
+myserver.bind(addr) 
+myserver.listen(10) # Loadbalancer listening on specific port and IP address. 
 counter = 0
 var = 0
 
@@ -37,17 +37,16 @@ try:
                         mysock.connect(addr2)
                         mysock.sendall(data)
                         var = count(counter)
-                        print ("counter value is : ", var)
-                        print ("connected to second server")
+                        print ("connected to first server")
              elif var == 1:
                         mysock1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                         mysock1.connect(addr3)
                         mysock1.sendall(data)
                         var = count(var)
-                        print ("counter value is : ", var)
                         print ("connected to second server")          
 
 finally:
     mysock.close()
     mysock1.close()
     myserver.close()
+    
